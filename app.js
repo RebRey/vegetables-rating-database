@@ -83,10 +83,20 @@ const radish = new Vegetable({
 });
 
 // Save 3 new vegetables
-Vegetable.insertMany([carrot, lettuce, radish], function (err) {
+// comment out to avoid adding these fruits each time the app is executed.
+// Vegetable.insertMany([carrot, lettuce, radish], function (err) {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("Successfully saved all the vegetables to vegetablesDB.");
+//   }
+// });
+
+// Reading from your database with Mongoose:
+Vegetable.find(function (err, vegetables) {
   if (err) {
     console.log(err);
   } else {
-    console.log("Successfully saved all the vegetables to vegetablesDB.");
+    console.log("Successfully found vegetables.");
   }
 });
