@@ -1,0 +1,22 @@
+{
+  "name": "vegetables-rating-database",
+  "version": "1.0.0",
+  "description": "A vegetable rating database with Mongoose.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RebRey/vegetables-rating-database.git"
+  },
+  "author": "Rebecca Reyes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RebRey/vegetables-rating-database/issues"
+  },
+  "homepage": "https://github.com/RebRey/vegetables-rating-database#readme",
+  "dependencies": {
+    "mongoose": "^6.9.1"
+  }
+}
