@@ -9,7 +9,7 @@ async function main() {
 
   await mongoose.connect("mongodb://127.0.0.1/vegetablesDB");
 
-  console.log("Connected");
+  console.log("Connected to MongoDB server.");
 }
 //create a Mongoose SCHEMA that sets out the fields each document will have and their datatypes
 const vegetableSchema = new mongoose.Schema({
@@ -33,58 +33,60 @@ const vegetable = new Vegetable({
 });
 
 //save the document
-vegetable.save();
-
 // //commented to avoid adding a new apple each time the app is executed.
+// vegetable.save();
 
+// CHALLENGE. Create a new collections for People
 
+//create a Mongoose SCHEMA that sets out the fields each document will have and their datatypes
+const personSchema = new mongoose.Schema({
+  name: String,
+  age: Number,
+});
 
-// // Challenge. Create a new collections for People
+//create a Mongoose MODEL
+const Person = mongoose.model("Person", personSchema);
 
-// const personSchema = new mongoose.Schema({
-//   name: String,
+//create a DOCUMENT
+const person = new Person({
+  name: "John",
+  age: 37,
+});
 
-//   age: Number,
-// });
-
-// const Person = mongoose.model("Person", personSchema);
-
-// const person = new Person({
-//   name: "John",
-
-//   age: "37",
-// });
-
+// save the document
+// comment out to avoid adding a John each time the app is executed.
 // person.save();
 
-// const kiwi = new Fruit({
-//   name: "Kiwi",
+// Add new vegetables
+const carrot = new Vegetable({
+  name: "carrot",
 
-//   score: 10,
+  score: 10,
 
-//   review: "The best fruit",
-// });
+  review: "The best vegetable.",
+});
 
-// const orange = new Fruit({
-//   name: "Orange",
+const lettuce = new Vegetable({
+  name: "lettuce",
 
-//   score: 4,
+  score: 4,
 
-//   review: "Too sour for me",
-// });
+  review: "Too plain for me.",
+});
 
-// const banana = new Fruit({
-//   name: "Banana",
+const radish = new Vegetable({
+  name: "radish",
 
-//   score: 3,
+  score: 3,
 
-//   review: "Weird texture",
-// });
+  review: "Too spicy.",
+});
 
-// Fruit.insertMany([kiwi, orange, banana], function (err) {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log("Successfully saved all the fruits to fruitsDB");
-//   }
-// });
+// Save 3 new vegetables
+Vegetable.insertMany([carrot, lettuce, radish], function (err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Successfully saved all the vegetables to vegetablesDB.");
+  }
+});
