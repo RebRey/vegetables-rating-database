@@ -1,7 +1,7 @@
 //require the Mongoose package
 const mongoose = require("mongoose");
 
-//connect to MongoDB by specifying port to access MongoDB server
+//Open the connection to MongoDB server
 main().catch((err) => console.log(err));
 
 async function main() {
@@ -97,10 +97,13 @@ Vegetable.find(function (err, vegetables) {
   if (err) {
     console.log(err);
   } else {
-    console.log(vegetables);
+    // console.log(vegetables);
+
+    // Close the connection to MongoDB server when it is done with the task.
+    mongoose.connection.close();
 
     // CHALLENGE: Use the for each loop to loop through the array of vegetables and only long their names.
-    vegetables.forEach(function(fruit){
+    vegetables.forEach(function (fruit) {
       console.log(fruit.name);
     });
   }
