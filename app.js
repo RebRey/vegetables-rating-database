@@ -97,6 +97,12 @@ Vegetable.find(function (err, vegetables) {
   if (err) {
     console.log(err);
   } else {
-    console.log("Successfully found vegetables.");
+    console.log(vegetables);
+
+    // CHALLENGE: Use the for each loop to loop through the array of vegetables and only long their names.
+    vegetables.forEach(function(fruit){
+      console.log(fruit.name);
+    });
   }
 });
+
