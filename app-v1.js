@@ -13,17 +13,9 @@ async function main() {
 }
 //create a Mongoose SCHEMA that sets out the fields each document will have and their datatypes
 const vegetableSchema = new mongoose.Schema({
-  // add data validation make the name required
-  name: {
-    type: String,
-    required: [true, "Please check your data entry, no name specified!"],
-  },
-  // add data validation so that the rating is between 1 and 10
-  rating: {
-    type: Number,
-    min: 1,
-    max: 10,
-  },
+  name: String,
+
+  rating: Number,
 
   review: String,
 });
@@ -65,13 +57,46 @@ const person = new Person({
 // comment out to avoid adding a John each time the app is executed.
 // person.save();
 
+// Add new vegetables
+const carrot = new Vegetable({
+  name: "carrot",
+
+  score: 10,
+
+  review: "The best vegetable.",
+});
+
+const lettuce = new Vegetable({
+  name: "lettuce",
+
+  score: 4,
+
+  review: "Too plain for me.",
+});
+
+const radish = new Vegetable({
+  name: "radish",
+
+  score: 3,
+
+  review: "Too spicy.",
+});
+
+// Save 3 new vegetables
+// comment out to avoid adding these fruits each time the app is executed.
+// Vegetable.insertMany([carrot, lettuce, radish], function (err) {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("Successfully saved all the vegetables to vegetablesDB.");
+//   }
+// });
+
 // Reading from your database with Mongoose:
 Vegetable.find(function (err, vegetables) {
   if (err) {
     console.log(err);
   } else {
-    // console.log(vegetables);
-
     // Close the connection to MongoDB server when it is done with the task.
     mongoose.connection.close();
 
@@ -82,15 +107,3 @@ Vegetable.find(function (err, vegetables) {
   }
 });
 
-// Update an entry (example celery entry did not have a name)
-Vegetable.updateOne(
-  { _id: "63e32eb6d20142f5074afcb3" },
-  { name: "celery" },
-  function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Successfully updated the document.");
-    }
-  }
-);
