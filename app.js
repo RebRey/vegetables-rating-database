@@ -50,20 +50,67 @@ const vegetable = new Vegetable({
 const personSchema = new mongoose.Schema({
   name: String,
   age: Number,
+  favoriteVegetable: vegetableSchema,
 });
+
+// Create a new vegetable document
+const onion = new Vegetable({
+  name: "onion",
+
+  rating: 9,
+
+  review: "Great vegetable.",
+});
+
+// save the onion document
+onion.save();
+
+// // Create a new vegetable document
+// const cucumber = new Vegetable({
+//   name: "cucumber",
+
+//   rating: 10,
+
+//   review: "Amazing, best vegetable.",
+// });
+
+// // save the cucumber document
+// cucumber.save();
 
 //create a Mongoose MODEL
 const Person = mongoose.model("Person", personSchema);
 
-//create a DOCUMENT
-const person = new Person({
-  name: "John",
-  age: 37,
-});
+// // create a DOCUMENT
+// const person = new Person({
+//   name: "John",
+//   age: 37,
+// });
 
 // save the document
-// comment out to avoid adding a John each time the app is executed.
 // person.save();
+
+// Create a new person
+// const person = new Person({
+//     name: "Amy",
+//     age: 12,
+//     favoriteVegetable: onion,
+//   });
+
+// save the document
+// person.save();
+
+// Update a person
+// Person.updateOne(
+//   { name: "John" },
+//   { favoriteVegetable: cucumber },
+//   function (err) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("Successfully updated the document.");
+//     }
+//   }
+// );
 
 // Reading from your database with Mongoose:
 Vegetable.find(function (err, vegetables) {
@@ -82,15 +129,52 @@ Vegetable.find(function (err, vegetables) {
   }
 });
 
-// Update an entry (example celery entry did not have a name)
-Vegetable.updateOne(
-  { _id: "63e32eb6d20142f5074afcb3" },
-  { name: "celery" },
-  function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Successfully updated the document.");
-    }
-  }
-);
+// // Update an entry (example celery entry did not have a name)
+// Vegetable.updateOne(
+//   { _id: "63e32eb6d20142f5074afcb3" },
+//   { name: "celery" },
+//   function (err) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("Successfully updated the document.");
+//     }
+//   }
+// );
+
+// // Delete an entry
+// Vegetable.deleteOne(
+//   { _id: "63e32eb6d20142f5074afcb3" },
+//   { name: "celery" },
+//   function (err) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("Successfully deleted the document.");
+//     }
+//   }
+// );
+
+// // Delete an entry
+// Vegetable.deleteOne(
+//   { name: "cucumber" },
+//   function (err) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("Successfully deleted the document.");
+//     }
+//   }
+// );
+
+// // // Delete Many
+// Person.deleteMany(
+//   { name: "John" },
+//   function (err) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log("Successfully deleted all the document.");
+//     }
+//   }
+// );
